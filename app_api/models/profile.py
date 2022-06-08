@@ -8,5 +8,13 @@ class Profile(models.Model):
         width_field=None, max_length=None, null=True)
     tags = models.ManyToManyField("Tag", related_name="profile")
     bio = models.CharField(max_length=250)
-    liked_comments = models.ManyToManyField("Comment", related_name="profile")
-    liked_posts = models.ManyToManyField("Post", related_name="profile")
+    liked_comments = models.ManyToManyField("Comment", related_name="profiles")
+    liked_posts = models.ManyToManyField("Post", related_name="profiles")
+        
+    @property
+    def is_followed(self):
+        return self._is_following
+
+    @is_followed.setter
+    def is_following(self, value):
+        self._is_following = value
