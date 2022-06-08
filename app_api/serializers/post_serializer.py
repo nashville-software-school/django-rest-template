@@ -14,3 +14,9 @@ class CreatePostSerializer(serializers.Serializer):
     class Meta:
         model = Post
         field = ['text', 'category']
+
+class UpdatePostSerializer(serializers.Serializer):
+    """This class will serialize data to update posts"""
+    class Meta:
+        model = Post
+        field = ['text']       

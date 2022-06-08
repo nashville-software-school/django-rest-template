@@ -1,5 +1,6 @@
 from .user_serializer import UserSerializer
-from .post_serializer import (PostSerializer, CreatePostSerializer)
+from .post_serializer import (PostSerializer, CreatePostSerializer,
+                              UpdatePostSerializer)
 from .comment_serializer import (CommentSerializer, CreateCommentSerializer)
 from .tag_serializer import TagSerializer
 from .music_serializer import (MusicSerializer, CreateMusicSerializer)
