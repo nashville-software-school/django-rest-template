@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action
 from serializers import (PostSerializer, CreatePostSerializer, 
-                        UpdatePostSerializer)
+                        UpdatePostSerializer, CreateCommentSerializer, CommentSerializer)
 from models import Post, Comment, Profile, Category
 from datetime import datetime
 
