@@ -4,14 +4,13 @@ from models import Post
 
 class PostSerializer(serializers.Serializer):
     """This class will serialize data for get posts"""
-    user = UserSerializer()
     class Meta:
         model = Post
-        fields = ('id', 'profile_img', 'tags', 'bio', 'user')
+        fields = ('profile', 'text', 'category', 'created_on')
         depth = 1
 
 class CreatePostSerializer(serializers.Serializer):
     """This class will serialize data for create posts"""
     class Meta:
         model = Post
-        field = ['profile_img', 'tags', 'bio']
+        field = ['profile', 'text', 'category']
