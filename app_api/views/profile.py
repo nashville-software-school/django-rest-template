@@ -24,3 +24,17 @@ class ProfileView(ViewSet):
         profiles = Profile.objects.all()
         serializer = ProfileSerializer(profiles)
         return Response(serializer.data)
+    
+    def create(self, request):
+        """Create a profile"""
+        pass
+    
+    def update(self, request, pk):
+        """Update a profile"""
+        pass
+    
+    def destroy(self, request, pk):
+        """Delete a profile"""
+        profile = Profile.objects.get(pk=pk)
+        profile.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
