@@ -1,3 +1,4 @@
+from logging import raiseExceptions
 from django.db.models import Count
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -38,6 +39,7 @@ class PostView(ViewSet):
         profile = Profile.objects.get(user=request.auth.user)
         created_on = datetime.now()
         serializer = CreatePostSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
         serializer.save(profile=profile, created_on=created_on)
         
     def destroy(self, request, pk):
@@ -56,7 +58,12 @@ class PostView(ViewSet):
     @action(methods=['post'], detail=True)
     def comment(self, request):
         """Comment on a post"""
-        pass
+        profile = Profile.objects.get(user=request.auth.user)
+        created_on = datetime.now()
+        serializer = CreateCommentSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(created_on, profile)
+        return Response(None, status=status.HTTP_201_CREATED)
     
     @action(methods=['post', 'delete'], detail=True)
     def like(self, request, pk):

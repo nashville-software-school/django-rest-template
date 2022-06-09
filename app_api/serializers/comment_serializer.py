@@ -5,7 +5,7 @@ class CommentSerializer(serializers.ModelSerializer):
     """This class will serialize data for comments"""
     class Meta:
         model = Comment
-        fields = ('id', 'text', 'post__id', 'profile', 'created_on')
+        fields = ('id', 'text', 'post', 'profile', 'created_on')
         depth = 1
 
 class CreateCommentSerializer(serializers.ModelSerializer):
