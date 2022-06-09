@@ -23,7 +23,7 @@ class ProfileView(ViewSet):
     def list(self, request):
         """Get all profiles"""
         profiles = Profile.objects.all()
-        serializer = ProfileSerializer(profiles)
+        serializer = ProfileSerializer(profiles, many=True)
         return Response(serializer.data)
     
     def create(self, request):
@@ -53,7 +53,7 @@ class ProfileView(ViewSet):
         profile.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
     
-    @action(methods=['get'], detail=False)
+    @action(methods=['get'], detail=False, url_path="my-posts")
     def get_my_posts(self, request):
         """Get the posts of the user"""
         profile = Profile.objects.get(user=request.auth.user)
@@ -61,12 +61,12 @@ class ProfileView(ViewSet):
         serializer = PostSerializer(posts)
         return Response(serializer.data)
     
-    @action(methods=['get'], detail=False)
+    @action(methods=['get'], detail=False, url_path="my-liked-posts")
     def get_my_liked_posts(self, request):
         """Get the posts the user has liked"""
         pass
 
-    @action(methods=['get'], detail=False)
+    @action(methods=['get'], detail=False, url_path="user-posts")
     def get_user_posts(self, request, pk):
         """Get the posts the user has liked"""
         profile = Profile.objects.get(pk=pk)
@@ -74,7 +74,7 @@ class ProfileView(ViewSet):
         serializer = PostSerializer(posts)
         return Response(serializer.data)
 
-    @action(methods=['get'], detail=False)
+    @action(methods=['get'], detail=False, url_path="user-liked-posts")
     def get_user_liked_posts(self, request):
         """Get the posts the user has liked"""
         pass

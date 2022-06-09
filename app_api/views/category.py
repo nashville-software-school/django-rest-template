@@ -19,5 +19,5 @@ class CategoryView(ViewSet):
     def list(self, request):
         """Get all categories"""
         categories = Category.objects.all()
-        serializer = CategorySerializer(categories)
+        serializer = CategorySerializer(categories, many=True)
         return Response(serializer.data)

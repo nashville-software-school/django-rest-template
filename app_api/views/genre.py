@@ -8,7 +8,7 @@ from app_api.serializers import GenreSerializer
 
 class GenreView(ViewSet):
     """This class will handle methods of data for genre"""
-    def retrieve(self, pk):
+    def retrieve(self, request, pk):
         """Get a single genre"""
         try:
             genre = Genre.objects.get(pk=pk)
@@ -20,5 +20,5 @@ class GenreView(ViewSet):
     def list(self, request):
         """Get all genres"""
         genres = Genre.objects.all()
-        serializer = GenreSerializer(genres)
+        serializer = GenreSerializer(genres, many=True)
         return Response(serializer.data)

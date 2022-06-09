@@ -19,5 +19,5 @@ class TagView(ViewSet):
     def list(self, request):
         """Get all tags"""
         tags = Tag.objects.all()
-        serializer = TagSerializer(tags)
+        serializer = TagSerializer(tags, many=True)
         return Response(serializer.data)
