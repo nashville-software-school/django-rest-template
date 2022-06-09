@@ -17,7 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from app_api.views import register_user, login_user
 from django.conf.urls.static import static
-import samplejam_project.settings as settings 
+import samplejam_project.settings as settings
+from rest_framework.routers import DefaultRouter
+from app_api.views import PostView
+
+router = DefaultRouter(trailing_slash=False)
+router.register(r'posts', PostView, 'post')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

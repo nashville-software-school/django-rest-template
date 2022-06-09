@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from models import Music
+from app_api.models import Music
 
 class MusicSerializer(serializers.Serializer):
     """This class will serialize data for music"""

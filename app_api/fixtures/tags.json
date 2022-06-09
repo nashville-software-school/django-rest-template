@@ -1,0 +1,72 @@
+[
+    {
+        "model": "app_api.tag",
+        "pk": 1,
+        "fields": {
+            "label": "Composer"
+        }
+    },
+    {
+        "model": "app_api.tag",
+        "pk": 2,
+        "fields": {
+            "label": "Guitarist"
+        }
+    },
+    {
+        "model": "app_api.tag",
+        "pk": 3,
+        "fields": {
+            "label": "Pianist"
+        }
+    },
+    {
+        "model": "app_api.tag",
+        "pk": 4,
+        "fields": {
+            "label": "Producer"
+        }
+    },
+    {
+        "model": "app_api.tag",
+        "pk": 5,
+        "fields": {
+            "label": "Orchestrator"
+        }
+    },
+    {
+        "model": "app_api.tag",
+        "pk": 6,
+        "fields": {
+            "label": "Violinist"
+        }
+    },
+    {
+        "model": "app_api.tag",
+        "pk": 7,
+        "fields": {
+            "label": "Flautist"
+        }
+    },
+    {
+        "model": "app_api.tag",
+        "pk": 8,
+        "fields": {
+            "label": "Savant"
+        }
+    },
+    {
+        "model": "app_api.tag",
+        "pk": 9,
+        "fields": {
+            "label": "Midi Magician"
+        }
+    },
+    {
+        "model": "app_api.tag",
+        "pk": 10,
+        "fields": {
+            "label": "Midi Wizard"
+        }
+    }
+]

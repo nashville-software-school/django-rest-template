@@ -1,0 +1,51 @@
+[
+    {
+        "model": "app_api.category",
+        "pk": 1,
+        "fields": {
+            "label": "Introduce Yourself"
+        }
+    },
+    {
+        "model": "app_api.category",
+        "pk": 2,
+        "fields": {
+            "label": "General Discussion"
+        }
+    },
+    {
+        "model": "app_api.category",
+        "pk": 3,
+        "fields": {
+            "label": "Sample Libraries"
+        }
+    },
+    {
+        "model": "app_api.category",
+        "pk": 4,
+        "fields": {
+            "label": "Announcements"
+        }
+    },
+    {
+        "model": "app_api.category",
+        "pk": 5,
+        "fields": {
+            "label": "Orchestration"
+        }
+    },
+    {
+        "model": "app_api.category",
+        "pk": 6,
+        "fields": {
+            "label": "Composition"
+        }
+    },
+    {
+        "model": "app_api.category",
+        "pk": 7,
+        "fields": {
+            "label": "Mixing and Mastering"
+        }
+    }
+]

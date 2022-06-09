@@ -1,0 +1,32 @@
+[
+    {
+        "model": "app_api.post",
+        "pk": 1,
+        "fields": {
+            "profile": 1,
+            "text": "You know what they say about such and such. Ya me neither...",
+            "category": 1,
+            "created_on": "2022-6-8 15:36:53"
+        }
+    },
+    {
+        "model": "app_api.post",
+        "pk": 2,
+        "fields": {
+            "profile": 1,
+            "text": "This is the second post on this site...",
+            "category": 1,
+            "created_on": "2022-6-8 15:50:53"
+        }
+    },
+    {
+        "model": "app_api.post",
+        "pk": 3,
+        "fields": {
+            "profile": 1,
+            "text": "This is the third post on this site...",
+            "category": 2,
+            "created_on": "2022-6-8 13:24:36"
+        }
+    }
+]

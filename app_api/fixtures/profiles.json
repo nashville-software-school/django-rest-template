@@ -1,0 +1,12 @@
+[
+    {
+        "model": "app_api.profile",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "profile_img": null,
+            "tags": [1, 2, 3],
+            "bio": "This is my bio, I don't really know what to say"
+        }
+    }
+]

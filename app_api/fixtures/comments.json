@@ -1,0 +1,42 @@
+[
+    {
+        "model": "app_api.comment",
+        "pk": 1,
+        "fields": {
+            "text": "Wow, nice post man",
+            "post": 1,
+            "profile": 1,
+            "created_on": "2022-6-8 16:36:53"
+        }
+    },
+    {
+        "model": "app_api.comment",
+        "pk": 2,
+        "fields": {
+            "text": "This is a second comment on the first post",
+            "post": 1,
+            "profile": 1,
+            "created_on": "2022-6-8 16:43:53"
+        }
+    },
+    {
+        "model": "app_api.comment",
+        "pk": 3,
+        "fields": {
+            "text": "Wow, nice second post man",
+            "post": 2,
+            "profile": 1,
+            "created_on": "2022-6-8 15:56:53"
+        }
+    },
+    {
+        "model": "app_api.comment",
+        "pk": 4,
+        "fields": {
+            "text": "Wow, nice third post man",
+            "post": 3,
+            "profile": 1,
+            "created_on": "2022-6-8 15:36:53"
+        }
+    }
+]

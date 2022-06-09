@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from models import Profile
-from serializers import UserSerializer
+from app_api.models import Profile
+from app_api.serializers import UserSerializer
 
 class ProfileSerializer(serializers.Serializer):
     """This class will serialize data for get posts"""
