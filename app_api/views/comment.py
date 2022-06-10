@@ -14,7 +14,7 @@ class CommentView(ViewSet):
         except Comment.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
-    def list(self):
+    def list(self, request):
         """Get all comments"""
         comments = Comment.objects.all()
         serializer = CommentSerializer(comments, many=True)
