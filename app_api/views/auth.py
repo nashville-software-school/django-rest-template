@@ -58,5 +58,5 @@ def register_user(request):
     token = Token.objects.create(user=new_user)
     # TODO: If you need to send the client more information update the data dict
     
-    data = { 'token': token.key }
+    data = { 'token': token.key, "new_user": new_user.id}
     return Response(data, status=status.HTTP_201_CREATED)
