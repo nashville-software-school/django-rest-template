@@ -27,9 +27,9 @@ class PostView(ViewSet):
         return Response(serializer.data)
 
     @action(methods=['get'], detail=False, url_path="category-posts")
-    def categoryposts(self, request):
+    def categoryposts(self, request, pk):
         """Get posts associated with category"""
-        category = Category.objects.all()
+        category = Category.objects.get(pk=pk)
         posts = Post.objects.all().filter(category=category)
         serializer = PostSerializer(posts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

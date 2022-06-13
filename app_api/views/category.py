@@ -7,7 +7,7 @@ from app_api.serializers import CategorySerializer
 
 class CategoryView(ViewSet):
     """This view will handle methods for data of categories"""
-    def retrieve(self, pk):
+    def retrieve(self, request, pk):
         """Get a single category"""
         try:
             category = Category.objects.get(pk=pk)

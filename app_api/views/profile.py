@@ -11,7 +11,7 @@ from app_api.serializers import (ProfileSerializer, CreateProfileSerializer,
 # we also might need a custom method to add music to a profile
 class ProfileView(ViewSet):
     """This view will handle methods for data in profile"""
-    def retrieve(self, pk):
+    def retrieve(self, request, pk):
         """Get a single profile"""
         try:
             profile = Profile.objects.get(pk=pk)

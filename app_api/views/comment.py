@@ -6,7 +6,7 @@ from app_api.serializers import CommentSerializer, CreateCommentSerializer
 
 class CommentView(ViewSet):
     """This class will handle methods of data for comments"""
-    def retrieve(self, pk):
+    def retrieve(self, request, pk):
         try:
             comment = Comment.objects.get(pk=pk)
             serializer = CommentSerializer(comment)
