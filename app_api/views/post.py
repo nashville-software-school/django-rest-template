@@ -1,4 +1,3 @@
-from logging import raiseExceptions
 from django.db.models import Count
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -33,6 +32,7 @@ class PostView(ViewSet):
         serializer = CreatePostSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(profile=profile, created_on=created_on)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
         
     def destroy(self, request, pk):
         """Delete a post"""
@@ -42,21 +42,22 @@ class PostView(ViewSet):
     
     def update(self, request, pk):
         """Update a post"""
-        post = Post.object.get(pk=pk)
+        post = Post.objects.get(pk=pk)
         serializer = UpdatePostSerializer(data=request.data)
         serializer.save(post)
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     @action(methods=['post'], detail=True)
-    def comment(self, request):
+    def comment(self, request, pk):
         """Comment on a post"""
         profile = Profile.objects.get(user=request.auth.user)
+        post = Post.objects.get(pk=pk)
         created_on = datetime.now()
         serializer = CreateCommentSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(created_on, profile)
-        return Response(None, status=status.HTTP_201_CREATED)
-    
+        serializer.save(created_on=created_on, profile=profile, post=post)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
     @action(methods=['post', 'delete'], detail=True)
     def like(self, request, pk):
         """Like a post"""
