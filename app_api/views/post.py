@@ -48,22 +48,16 @@ class PostView(ViewSet):
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     @action(methods=['post'], detail=True)
-    def comment(self, request):
+    def comment(self, request, pk):
         """Comment on a post"""
         profile = Profile.objects.get(user=request.auth.user)
+        post = Post.objects.get(pk=pk)
         created_on = datetime.now()
         serializer = CreateCommentSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(created_on, profile)
-        return Response(None, status=status.HTTP_201_CREATED)
-    
-    @action(methods=['get'], detail=True, url_path="post-comments")
-    def get_post_comments(self, request, pk):
-        post = Post.objects.get(pk=pk)
-        comments = Comment.objects.get(post=post)
-        serializer = CommentSerializer(comments, many=True)
-        return Response(serializer.data)
-    
+        serializer.save(created_on=created_on, profile=profile, post=post)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
     @action(methods=['post', 'delete'], detail=True)
     def like(self, request, pk):
         """Like a post"""

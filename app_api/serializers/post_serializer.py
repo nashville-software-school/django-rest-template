@@ -5,7 +5,7 @@ class PostSerializer(serializers.ModelSerializer):
     """This class will serialize data for get posts"""
     class Meta:
         model = Post
-        fields = ('profile', 'title', 'text', 'category', 'created_on')
+        fields = ('id', 'profile', 'title', 'text', 'category', 'created_on', 'comments')
         depth = 1
 
 class CreatePostSerializer(serializers.ModelSerializer):
@@ -18,4 +18,4 @@ class UpdatePostSerializer(serializers.ModelSerializer):
     """This class will serialize data to update posts"""
     class Meta:
         model = Post
-        fields = ['id', 'text', 'title']       
+        fields = ['id', 'text']       
