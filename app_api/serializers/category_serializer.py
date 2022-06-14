@@ -5,4 +5,5 @@ class CategorySerializer(serializers.ModelSerializer):
     """This class will serialize data for categories"""
     class Meta:
         model = Category
-        fields = ('id', 'label')
+        fields = ('id', 'label', 'posts')
+        depth = 1

@@ -20,6 +20,13 @@ class ProfileView(ViewSet):
         except Profile.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
+    @action(methods=['get'], detail=True, url_path='my-profile')
+    def get_my_profile(self, request):
+        user = request.auth.user
+        profile = Profile.objects.get(user=user)
+        serializer = ProfileSerializer(profile)
+        return Response(serializer.data)
+
     def list(self, request):
         """Get all profiles"""
         profiles = Profile.objects.all()
