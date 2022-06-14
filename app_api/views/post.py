@@ -1,4 +1,3 @@
-from logging import raiseExceptions
 from django.db.models import Count
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -43,7 +42,7 @@ class PostView(ViewSet):
     
     def update(self, request, pk):
         """Update a post"""
-        post = Post.object.get(pk=pk)
+        post = Post.objects.get(pk=pk)
         serializer = UpdatePostSerializer(data=request.data)
         serializer.save(post)
         return Response(None, status=status.HTTP_204_NO_CONTENT)
@@ -57,6 +56,13 @@ class PostView(ViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save(created_on, profile)
         return Response(None, status=status.HTTP_201_CREATED)
+    
+    @action(methods=['get'], detail=True, url_path="post-comments")
+    def get_post_comments(self, request, pk):
+        post = Post.objects.get(pk=pk)
+        comments = Comment.objects.get(post=post)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
     
     @action(methods=['post', 'delete'], detail=True)
     def like(self, request, pk):
