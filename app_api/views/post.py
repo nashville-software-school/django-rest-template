@@ -33,6 +33,7 @@ class PostView(ViewSet):
         serializer = CreatePostSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(profile=profile, created_on=created_on)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
         
     def destroy(self, request, pk):
         """Delete a post"""

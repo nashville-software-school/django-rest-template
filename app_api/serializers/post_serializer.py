@@ -12,10 +12,10 @@ class CreatePostSerializer(serializers.ModelSerializer):
     """This class will serialize data for create posts"""
     class Meta:
         model = Post
-        field = ['text', 'category']
+        fields = ['id', 'text', 'title','category']
 
 class UpdatePostSerializer(serializers.ModelSerializer):
     """This class will serialize data to update posts"""
     class Meta:
         model = Post
-        field = ['text']       
+        fields = ['id', 'text', 'title']       

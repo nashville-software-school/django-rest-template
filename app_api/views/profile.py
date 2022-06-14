@@ -20,7 +20,7 @@ class ProfileView(ViewSet):
         except Profile.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
-    @action(methods=['get'], detail=True, url_path='my-profile')
+    @action(methods=['get'], detail=False, url_path='my-profile')
     def get_my_profile(self, request):
         user = request.auth.user
         profile = Profile.objects.get(user=user)
@@ -73,7 +73,7 @@ class ProfileView(ViewSet):
         """Get the posts the user has liked"""
         pass
 
-    @action(methods=['get'], detail=False, url_path="user-posts")
+    @action(methods=['get'], detail=True, url_path="user-posts")
     def get_user_posts(self, request, pk):
         """Get the posts the user has liked"""
         profile = Profile.objects.get(pk=pk)
@@ -81,7 +81,7 @@ class ProfileView(ViewSet):
         serializer = PostSerializer(posts)
         return Response(serializer.data)
 
-    @action(methods=['get'], detail=False, url_path="user-liked-posts")
+    @action(methods=['get'], detail=True, url_path="user-liked-posts")
     def get_user_liked_posts(self, request):
         """Get the posts the user has liked"""
         pass
