@@ -68,7 +68,7 @@ CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.1:3000'
 )
 
-ROOT_URLCONF = 'app_project.urls'
+ROOT_URLCONF = 'samplejam_project.urls'
 
 TEMPLATES = [
     {
@@ -86,7 +86,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app_project.wsgi.application'
+WSGI_APPLICATION = 'samplejam_project.wsgi.application'
 
 
 # Database

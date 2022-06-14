@@ -1,0 +1,100 @@
+[
+    {
+        "model": "app_api.genre",
+        "pk": 1,
+        "fields": {
+            "label": "Rock"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 2,
+        "fields": {
+            "label": "Classical"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 3,
+        "fields": {
+            "label": "Hybrid Orchestral"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 4,
+        "fields": {
+            "label": "Orchestral"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 5,
+        "fields": {
+            "label": "Hip-Hop"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 6,
+        "fields": {
+            "label": "Trap"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 7,
+        "fields": {
+            "label": "Pop"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 8,
+        "fields": {
+            "label": "Indie"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 9,
+        "fields": {
+            "label": "Folk"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 10,
+        "fields": {
+            "label": "Country"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 11,
+        "fields": {
+            "label": "Jazz"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 12,
+        "fields": {
+            "label": "Blues"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 13,
+        "fields": {
+            "label": "EDM"
+        }
+    },
+    {
+        "model": "app_api.genre",
+        "pk": 14,
+        "fields": {
+            "label": "Electronic"
+        }
+    }
+]

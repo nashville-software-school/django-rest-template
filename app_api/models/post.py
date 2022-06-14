@@ -3,8 +3,9 @@ from django.db import models
 class Post(models.Model):
     """This class will initialize a Post model"""
     profile = models.ForeignKey("Profile", on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
     text = models.TextField()
-    category = models.ForeignKey("Category", on_delete=models.CASCADE)
+    category = models.ForeignKey("Category", on_delete=models.CASCADE, related_name="posts")
     created_on = models.DateTimeField()
 
     @property

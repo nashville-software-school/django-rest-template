@@ -1,14 +1,14 @@
 from rest_framework import serializers
-from models import Comment
+from app_api.models import Comment
 
-class CommentSerializer(serializers.Serializer):
+class CommentSerializer(serializers.ModelSerializer):
     """This class will serialize data for comments"""
     class Meta:
         model = Comment
-        fields = ('id', 'text', 'post__id', 'profile', 'created_on')
+        fields = ('id', 'text', 'post', 'profile', 'created_on')
         depth = 1
 
-class CreateCommentSerializer(serializers.Serializer):
+class CreateCommentSerializer(serializers.ModelSerializer):
     """This class will serialize data to create a comment"""
     class Meta:
         model = Comment

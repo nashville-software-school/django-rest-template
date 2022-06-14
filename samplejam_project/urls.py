@@ -14,12 +14,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from app_api.views import register_user, login_user
 from django.conf.urls.static import static
-import samplejam_project.settings as settings 
+import samplejam_project.settings as settings
+from rest_framework.routers import DefaultRouter
+from app_api.views import (PostView, GenreView, TagView, 
+                           CommentView, CategoryView, ProfileView)
+
+router = DefaultRouter(trailing_slash=False)
+router.register(r'posts', PostView, 'post')
+router.register(r'genres', GenreView, 'genre')
+router.register(r'tags', TagView, 'tag')
+router.register(r'comments', CommentView, 'comment')
+router.register(r'categories', CategoryView, 'category')
+router.register(r'profiles', ProfileView, 'profile')
+
 
 urlpatterns = [
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('register', register_user),
     path('login', login_user),

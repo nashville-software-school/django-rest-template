@@ -6,6 +6,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 
+from app_api.models.profile import Profile
+
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -44,14 +46,17 @@ def register_user(request):
     new_user = User.objects.create_user(
         username=request.data['username'],
         password=request.data['password'],
+        email=request.data['email'],
         first_name=request.data['first_name'],
         last_name=request.data['last_name']
     )
 
     # TODO: If you're using a model with a 1 to 1 relationship to the django user, create that object here
+    # is this the correct way to assert this relationship
+    # also I plan for the creation of the profile data to be seperate from the registration of a user
     
     token = Token.objects.create(user=new_user)
     # TODO: If you need to send the client more information update the data dict
     
-    data = { 'token': token.key }
+    data = { 'token': token.key, "new_user": new_user.id}
     return Response(data, status=status.HTTP_201_CREATED)
