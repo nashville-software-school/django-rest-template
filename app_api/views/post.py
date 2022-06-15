@@ -13,6 +13,7 @@ class PostView(ViewSet):
         """Get single post"""
         try:
             post = Post.objects.get(pk=pk)
+            post.is_my_post = request.auth.user == post.profile.user
             serializer = PostSerializer(post)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Post.DoesNotExist as ex:

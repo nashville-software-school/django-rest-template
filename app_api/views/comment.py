@@ -9,6 +9,7 @@ class CommentView(ViewSet):
     def retrieve(self, request, pk):
         try:
             comment = Comment.objects.get(pk=pk)
+            comment.is_my_post = request.auth.user == comment.profile.user
             serializer = CommentSerializer(comment)
             return Response(serializer.data)
         except Comment.DoesNotExist as ex:
@@ -21,7 +22,7 @@ class CommentView(ViewSet):
         return Response(serializer.data)
     
     def update(self, request, pk):
-        """Edit a post"""
+        """Edit a comment"""
         comment = Comment.objects.get(pk=pk)
         serializer = CreateCommentSerializer(data=request.data)
         serializer.save(comment)

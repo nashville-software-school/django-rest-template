@@ -7,7 +7,7 @@ class PostSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer()
     class Meta:
         model = Post
-        fields = ('id', 'profile', 'title', 'text', 'category', 'created_on', 'comments')
+        fields = ('id', 'profile', 'title', 'text', 'category', 'created_on', 'comments', 'is_my_post')
         depth = 2
 
 class CreatePostSerializer(serializers.ModelSerializer):

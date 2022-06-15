@@ -14,4 +14,4 @@ class CreateProfileSerializer(serializers.ModelSerializer):
     """This class will serialize data for create posts"""
     class Meta:
         model = Profile
-        field = ['bio', 'profile_img']
+        fields = ['id', 'bio']

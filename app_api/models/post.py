@@ -10,8 +10,16 @@ class Post(models.Model):
 
     @property
     def is_liked(self):
-        return self._is_liked
+        return self.__is_liked
 
     @is_liked.setter
     def is_liked(self, value):
-        self._is_liked = value
+        self.__is_liked = value
+        
+    @property
+    def is_my_post(self):
+        return self.__is_my_post
+    
+    @is_my_post.setter
+    def is_my_post(self, value):
+        self.__is_my_post = value
