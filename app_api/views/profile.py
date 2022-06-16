@@ -37,9 +37,10 @@ class ProfileView(ViewSet):
         """Create a profile"""
         user = request.auth.user
         tags = request.data['tags']
+        profile_img = request.data['profile_img']
         serializer = CreateProfileSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(tags=tags, user=user)
+        serializer.save(tags=tags, user=user, profile_img=profile_img)
         return Response(None, status=status.HTTP_201_CREATED)
 
     def update(self, request):

@@ -9,7 +9,7 @@ class CommentView(ViewSet):
     def retrieve(self, request, pk):
         try:
             comment = Comment.objects.get(pk=pk)
-            serializer = CommentSerializer(comment)
+            serializer = CommentSerializer(comment, context={'request': request})
             return Response(serializer.data)
         except Comment.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
@@ -21,8 +21,14 @@ class CommentView(ViewSet):
         return Response(serializer.data)
     
     def update(self, request, pk):
-        """Edit a post"""
+        """Edit a comment"""
         comment = Comment.objects.get(pk=pk)
-        serializer = CreateCommentSerializer(data=request.data)
-        serializer.save(comment)
+        serializer = CreateCommentSerializer(comment, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+    
+    def destroy(self, request, pk):
+        comment = Comment.objects.get(pk=pk)
+        comment.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)

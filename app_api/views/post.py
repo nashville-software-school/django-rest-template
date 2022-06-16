@@ -13,7 +13,8 @@ class PostView(ViewSet):
         """Get single post"""
         try:
             post = Post.objects.get(pk=pk)
-            serializer = PostSerializer(post)
+            post.is_my_post = request.auth.user == post.profile.user
+            serializer = PostSerializer(post, context={'request': request})
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Post.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
@@ -43,8 +44,9 @@ class PostView(ViewSet):
     def update(self, request, pk):
         """Update a post"""
         post = Post.objects.get(pk=pk)
-        serializer = UpdatePostSerializer(data=request.data)
-        serializer.save(post)
+        serializer = UpdatePostSerializer(post, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     @action(methods=['post'], detail=True)
