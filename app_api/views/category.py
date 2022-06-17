@@ -11,7 +11,7 @@ class CategoryView(ViewSet):
         """Get a single category"""
         try:
             category = Category.objects.get(pk=pk)
-            serializer = CategorySerializer(category)
+            serializer = CategorySerializer(category, context={'request': request})
             return Response(serializer.data)
         except Category.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
@@ -19,5 +19,5 @@ class CategoryView(ViewSet):
     def list(self, request):
         """Get all categories"""
         categories = Category.objects.all()
-        serializer = CategorySerializer(categories, many=True)
+        serializer = CategorySerializer(categories, many=True, context={'request': request})
         return Response(serializer.data)
