@@ -13,8 +13,16 @@ class Profile(models.Model):
         
     @property
     def is_followed(self):
-        return self._is_following
+        return self.__is_following
 
     @is_followed.setter
     def is_following(self, value):
-        self._is_following = value
+        self.__is_following = value
+    
+    @property
+    def is_my_profile(self):
+        return self.__is_my_profile
+
+    @is_my_profile.setter
+    def is_my_profile(self, value):
+        self.__is_my_profile = value
