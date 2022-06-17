@@ -6,3 +6,4 @@ from .comment import CommentView
 from .profile import ProfileView
 from .tag import TagView
 from .genre import GenreView
+from .user import UserView

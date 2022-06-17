@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 import samplejam_project.settings as settings
 from rest_framework.routers import DefaultRouter
 from app_api.views import (PostView, GenreView, TagView, 
-                           CommentView, CategoryView, ProfileView)
+                           CommentView, CategoryView, ProfileView, UserView)
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r'posts', PostView, 'post')
@@ -29,6 +29,7 @@ router.register(r'tags', TagView, 'tag')
 router.register(r'comments', CommentView, 'comment')
 router.register(r'categories', CategoryView, 'category')
 router.register(r'profiles', ProfileView, 'profile')
+router.register(r'users', UserView, 'user')
 
 
 urlpatterns = [
