@@ -15,6 +15,7 @@ class ProfileView(ViewSet):
         """Get a single profile"""
         try:
             profile = Profile.objects.get(pk=pk)
+            profile.is_my_profile = request.auth.user == profile.user
             serializer = ProfileSerializer(profile)
             return Response(serializer.data)
         except Profile.DoesNotExist as ex:
@@ -43,12 +44,13 @@ class ProfileView(ViewSet):
         serializer.save(tags=tags, user=user, profile_img=profile_img)
         return Response(None, status=status.HTTP_201_CREATED)
 
-    def update(self, request):
+    def update(self, request, pk):
         """Update a profile"""
-        profile = Profile.objects.get(user=request.auth.user)
+        profile = Profile.objects.get(pk=pk)
         # I don't want any data to be required in the response
         # that way if no changes are made to the data it will remain the same
         serializer = CreateProfileSerializer(profile, data=request.data)
+        serializer.is_valid(raise_exception=True)
         serializer.save()
         profile.refresh_from_db()
         profile.tags.remove(*profile.tags.all())
