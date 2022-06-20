@@ -6,6 +6,10 @@ from rest_framework.decorators import action
 from app_api.models import Profile, Post
 from app_api.serializers import (ProfileSerializer, CreateProfileSerializer,
                                 PostSerializer)
+from django.core.files.base import ContentFile
+import base64
+import uuid
+
 
 # we need to retrieve, list, create, and delete profiles
 # we also might need a custom method to add music to a profile
@@ -38,10 +42,12 @@ class ProfileView(ViewSet):
         """Create a profile"""
         user = request.auth.user
         tags = request.data['tags']
-        profile_img = request.data['profile_img']
+        format, imgstr = request.data["profile_img"].split(';base64,')
+        ext = format.split('/')[-1]
+        request.data['profile_img'] = ContentFile(base64.b64decode(imgstr), name=f'{request.data["title"]}-{uuid.uuid4()}.{ext}')
         serializer = CreateProfileSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(tags=tags, user=user, profile_img=profile_img)
+        serializer.save(tags=tags, user=user)
         return Response(None, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk):

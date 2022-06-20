@@ -6,3 +6,9 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'first_name', 'last_name', 'username', 'email')
+        
+class UpdateUserSerializer(serializers.ModelSerializer):
+    """This class will serialize data for updating users"""
+    class Meta:
+        model = User
+        fields = ['id', 'first_name', 'last_name', 'username', 'email']
