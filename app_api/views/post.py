@@ -1,10 +1,9 @@
-from django.db.models import Count
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action
-from app_api.serializers import PostSerializer, CreatePostSerializer, UpdatePostSerializer, CreateCommentSerializer, CommentSerializer
-from app_api.models import Post, Comment, Profile, Category
+from app_api.serializers import PostSerializer, CreatePostSerializer, UpdatePostSerializer, CreateCommentSerializer
+from app_api.models import Post, Profile
 from datetime import datetime
 
 class PostView(ViewSet):

@@ -10,7 +10,7 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ('id', 'profile', 'title', 'text', 'category',
-                  'created_on', 'comments', 'is_my_post')
+                  'created_on', 'comments', 'is_my_post', 'comment_count')
         depth = 2
 
 class CreatePostSerializer(serializers.ModelSerializer):
