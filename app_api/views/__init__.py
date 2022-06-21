@@ -7,3 +7,4 @@ from .profile import ProfileView
 from .tag import TagView
 from .genre import GenreView
 from .user import UserView
+from .music import MusicView
