@@ -23,3 +23,7 @@ class Post(models.Model):
     @is_my_post.setter
     def is_my_post(self, value):
         self.__is_my_post = value
+        
+    @property
+    def comment_count(self):
+        return self.comments.count()

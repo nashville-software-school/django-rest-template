@@ -6,6 +6,10 @@ from rest_framework.decorators import action
 from app_api.models import Profile, Post
 from app_api.serializers import (ProfileSerializer, CreateProfileSerializer,
                                 PostSerializer)
+from django.core.files.base import ContentFile
+import base64
+import uuid
+
 
 # we need to retrieve, list, create, and delete profiles
 # we also might need a custom method to add music to a profile
@@ -16,7 +20,7 @@ class ProfileView(ViewSet):
         try:
             profile = Profile.objects.get(pk=pk)
             profile.is_my_profile = request.auth.user == profile.user
-            serializer = ProfileSerializer(profile)
+            serializer = ProfileSerializer(profile, context={'request': request})
             return Response(serializer.data)
         except Profile.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
@@ -25,23 +29,22 @@ class ProfileView(ViewSet):
     def get_my_profile(self, request):
         user = request.auth.user
         profile = Profile.objects.get(user=user)
-        serializer = ProfileSerializer(profile)
+        serializer = ProfileSerializer(profile, context={'request': request})
         return Response(serializer.data)
 
     def list(self, request):
         """Get all profiles"""
         profiles = Profile.objects.all()
-        serializer = ProfileSerializer(profiles, many=True)
+        serializer = ProfileSerializer(profiles, many=True, context={'request': request})
         return Response(serializer.data)
     
     def create(self, request):
         """Create a profile"""
         user = request.auth.user
         tags = request.data['tags']
-        profile_img = request.data['profile_img']
         serializer = CreateProfileSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(tags=tags, user=user, profile_img=profile_img)
+        serializer.save(tags=tags, user=user)
         return Response(None, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk):
@@ -49,9 +52,14 @@ class ProfileView(ViewSet):
         profile = Profile.objects.get(pk=pk)
         # I don't want any data to be required in the response
         # that way if no changes are made to the data it will remain the same
+        format, imgstr = request.data["profile_img"].split(';base64,')
+        ext = format.split('/')[-1]
+        request.data['profile_img'] = ContentFile(base64.b64decode(imgstr), name=f'{request.auth.user.id}-{uuid.uuid4()}.{ext}')
         serializer = CreateProfileSerializer(profile, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        profile.profile_img = request.data['profile_img']
+        profile.save()
         profile.refresh_from_db()
         profile.tags.remove(*profile.tags.all())
         profile.tags.add(*request.data['tags'])

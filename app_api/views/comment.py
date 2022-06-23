@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import status
-from app_api.models import Comment, Profile
+from app_api.models import Comment
 from app_api.serializers import CommentSerializer, CreateCommentSerializer
 
 class CommentView(ViewSet):

@@ -1,4 +1,4 @@
-from .user_serializer import UserSerializer
+from .user_serializer import (UserSerializer, UpdateUserSerializer)
 from .post_serializer import (PostSerializer, CreatePostSerializer,
                               UpdatePostSerializer)
 from .comment_serializer import (CommentSerializer, CreateCommentSerializer)
