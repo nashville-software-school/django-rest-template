@@ -22,7 +22,7 @@ class PostView(ViewSet):
         "Get all posts"
         # later we will sort by comment count, data posted, recent activity, and title
         posts = Post.objects.all()
-        serializer = PostSerializer(posts, many=True)
+        serializer = PostSerializer(posts, many=True, context={'request': request})
         return Response(serializer.data)
 
     def create(self, request):
