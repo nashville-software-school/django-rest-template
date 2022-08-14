@@ -25,7 +25,8 @@ def login_user(request):
         # TODO: If you need to return more information to the client, update the data dict
         data = {
             'valid': True,
-            'token': token.key
+            'token': token.key,
+            'user_id': authenticated_user.id
         }
     else:
         data = { 'valid': False }
@@ -52,5 +53,5 @@ def register_user(request):
     token = Token.objects.create(user=new_user)
     # TODO: If you need to send the client more information update the data dict
     
-    data = { 'token': token.key }
+    data = { 'token': token.key, 'user_id': new_user.id }
     return Response(data, status=status.HTTP_201_CREATED)
